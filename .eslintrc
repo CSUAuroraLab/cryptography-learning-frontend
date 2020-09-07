@@ -1,0 +1,38 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "ignorePatterns": ["**/graphql.tsx"],
+    "extends": [
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "indent": ["error", 2],
+      "semi": ["error", "never"],
+      "@typescript-eslint/member-delimiter-style": ["error", {
+        "multiline": {
+          "delimiter": "none",
+          "requireLast": false
+        },
+        "singleline": {
+          "delimiter": "comma",
+          "requireLast": false
+        }
+      }],
+      "react/display-name": ["off"],
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "react/prop-types" : ["off"]
+    }
+  }
+  
