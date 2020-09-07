@@ -1,19 +1,21 @@
 
 import React, { Suspense } from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { Page as Home } from './pages'
-import { Page as Labs } from './pages/labs'
-import { Page as learning } from './pages/learning'
+import { RoutePage } from 'components/LoadPage'
 
 export const Routes: React.FC = () => {
 
   return <Suspense fallback={ <div>faild</div> }>
     <Switch>
-      <Route exact path='/' component={Home}/>
-      <Route path='/labs' component={Labs}/>
-      <Route path='/learning' component={learning}/>
-
-      <Redirect to='/' />
+      <RoutePage path='/' page={import('pages/index')}> 
+        <Switch>
+          <RoutePage exact path='/' page={import('pages/home')} /> 
+          <RoutePage path='/labs' page={import('pages/labs')} /> 
+          <RoutePage path='/learning' page={import('pages/learning')} /> 
+          
+          <Redirect to='/' />
+        </Switch>
+      </RoutePage>
     </Switch>
   </Suspense>
 }

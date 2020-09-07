@@ -17,6 +17,7 @@ i18n
           'home': 'Home',
           'labs': 'Labs',
           'learning': 'Learning',
+          'parent': 'Parent Page',
         }
       },
       zh: {
@@ -24,6 +25,7 @@ i18n
           'home': '主页',
           'labs': '实验',
           'learning': '学习',
+          'parent': '父页面',
         }
       }
     },
