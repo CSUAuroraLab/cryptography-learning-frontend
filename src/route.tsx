@@ -1,6 +1,6 @@
 
 import React, { Suspense } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Switch, Redirect } from 'react-router-dom'
 import { RoutePage } from 'components/LoadPage'
 
 export const Routes: React.FC = () => {

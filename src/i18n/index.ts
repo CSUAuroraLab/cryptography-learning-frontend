@@ -17,7 +17,7 @@ i18n
           'home': 'Home',
           'labs': 'Labs',
           'learning': 'Learning',
-          'parent': 'Parent Page',
+          'site-name': 'CryptoLearn',
         }
       },
       zh: {
@@ -25,14 +25,14 @@ i18n
           'home': '主页',
           'labs': '实验',
           'learning': '学习',
-          'parent': '父页面',
+          'site-name': '密码学学习',
         }
       }
     },
     fallbackLng: 'zh',
     debug: true,
-    ns: ["translations"],
-    defaultNS: "translations",
+    ns: ['translations'],
+    defaultNS: 'translations',
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
