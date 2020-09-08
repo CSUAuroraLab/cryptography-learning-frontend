@@ -1,7 +1,6 @@
 import React from 'react'
-import { Icon, Intent } from '@blueprintjs/core'
-import { IconNames } from '@blueprintjs/icons'
+import { Intent, Spinner } from '@blueprintjs/core'
 
 export const Loading: React.FC = () => {
-  return <Icon icon={IconNames.REPEAT} iconSize={Icon.SIZE_LARGE} intent={Intent.PRIMARY} />
+  return <Spinner intent={Intent.PRIMARY} size={50} />
 }
