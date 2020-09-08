@@ -12,6 +12,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { Unselectable } from 'components/Unselectable'
 import { Select, IItemModifiers } from "@blueprintjs/select"
+import { useHistory } from 'react-router-dom'
 
 const I18nSelect = Select.ofType<string>()
 
@@ -47,6 +48,7 @@ export const Page: React.FC = ({ children }) => {
   // check https://github.com/i18next/i18next/issues/1068 for discuss
   // const items = Object.keys(i18n.services.resourceStore.data)
   const [ dark, setDark ] = useState(false)
+  const history = useHistory()
 
   return <div className={dark ? 'bp3-dark' : ''}>
     <Navbar>
@@ -56,9 +58,9 @@ export const Page: React.FC = ({ children }) => {
         </Unselectable>
         <NavbarDivider />
         <Unselectable>
-          <Button className={Classes.MINIMAL} icon='home' text={t('home')} />
-          <Button className={Classes.MINIMAL} icon='flag' text={t('labs')} />
-          <Button className={Classes.MINIMAL} icon='search' text={t('learning')} />
+          <Button className={Classes.MINIMAL} icon='home' text={t('home')} onClick={() => history.push('/')} />
+          <Button className={Classes.MINIMAL} icon='flag' text={t('labs')} onClick={() => history.push('/labs')} />
+          <Button className={Classes.MINIMAL} icon='search' text={t('learning')} onClick={() => history.push('/learning')} />
         </Unselectable>
       </NavbarGroup>
       <NavbarGroup align={Alignment.RIGHT}>
