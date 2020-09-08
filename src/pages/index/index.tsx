@@ -9,6 +9,7 @@ import {
   NavbarHeading,
 } from '@blueprintjs/core'
 import { useTranslation } from 'react-i18next'
+import { Unselectable } from 'components/Unselectable'
 
 export const Page: React.FC = ({ children }) => {
   const { t } = useTranslation()
@@ -16,11 +17,15 @@ export const Page: React.FC = ({ children }) => {
   return <>
     <Navbar>
       <NavbarGroup align={Alignment.LEFT}>
-        <NavbarHeading>{t('site-name')}</NavbarHeading>
+        <Unselectable>
+          <NavbarHeading>{t('site-name')}</NavbarHeading>
+        </Unselectable>
         <NavbarDivider />
-        <Button className={Classes.MINIMAL} icon='home' text={t('home')} />
-        <Button className={Classes.MINIMAL} icon='flag' text={t('labs')} />
-        <Button className={Classes.MINIMAL} icon='search' text={t('learning')} />
+        <Unselectable>
+          <Button className={Classes.MINIMAL} icon='home' text={t('home')} />
+          <Button className={Classes.MINIMAL} icon='flag' text={t('labs')} />
+          <Button className={Classes.MINIMAL} icon='search' text={t('learning')} />
+        </Unselectable>
       </NavbarGroup>
     </Navbar>
     { children }
