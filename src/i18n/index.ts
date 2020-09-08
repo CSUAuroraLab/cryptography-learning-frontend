@@ -8,28 +8,37 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
+    supportedLngs: ['en-US', 'zh-CN'],
     react: {
       useSuspense: false
     },
     resources: {
-      en: {
+      'en-US': {
         translations: {
           'home': 'Home',
           'labs': 'Labs',
           'learning': 'Learning',
           'site-name': 'CryptoLearn',
+          i18n: {
+            'en-US': 'English',
+            'zh-CN': 'Chinese(Simplified)',
+          }
         }
       },
-      zh: {
+      'zh-CN': {
         translations: {
           'home': '主页',
           'labs': '实验',
           'learning': '学习',
           'site-name': '密码学学习',
+          i18n: {
+            'en-US': '英文',
+            'zh-CN': '简体中文'
+          }
         }
       }
     },
-    fallbackLng: 'zh',
+    fallbackLng: [ 'zh-CN', 'en-US' ],
     debug: true,
     ns: ['translations'],
     defaultNS: 'translations',
