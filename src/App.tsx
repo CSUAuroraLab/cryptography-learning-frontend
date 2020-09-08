@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-import 'i18n'
 import { Providers } from 'Providers'
 import { Routes } from 'route'
 
