@@ -19,6 +19,8 @@ i18n
           'labs': 'Labs',
           'learning': 'Learning',
           'site-name': 'CryptoLearn',
+          'light': 'Light',
+          'dark': 'Dark',
           i18n: {
             'en-US': 'English',
             'zh-CN': 'Chinese(Simplified)',
@@ -31,6 +33,8 @@ i18n
           'labs': '实验',
           'learning': '学习',
           'site-name': '密码学学习',
+          'light': '日间模式',
+          'dark': '夜间模式',
           i18n: {
             'en-US': '英文',
             'zh-CN': '简体中文'

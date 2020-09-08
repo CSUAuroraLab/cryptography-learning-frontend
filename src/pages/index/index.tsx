@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Alignment,
   Button,
@@ -46,8 +46,9 @@ export const Page: React.FC = ({ children }) => {
   // but if not using line above, seems only ugly way to do so,
   // check https://github.com/i18next/i18next/issues/1068 for discuss
   // const items = Object.keys(i18n.services.resourceStore.data)
+  const [ dark, setDark ] = useState(false)
 
-  return <>
+  return <div className={dark ? 'bp3-dark' : ''}>
     <Navbar>
       <NavbarGroup align={Alignment.LEFT}>
         <Unselectable>
@@ -61,6 +62,13 @@ export const Page: React.FC = ({ children }) => {
         </Unselectable>
       </NavbarGroup>
       <NavbarGroup align={Alignment.RIGHT}>
+        <NavbarDivider />
+        <Button 
+          text={dark ? t('light') : t('dark')} 
+          icon={dark ? 'flash' : 'moon'} 
+          onClick={() => {setDark(!dark)}}
+        />
+        <NavbarDivider />
         <I18nSelect
           items={items}
           itemRenderer={(s, {handleClick, modifiers}) => <I18nRender s={s} handleClick={handleClick} modifiers={modifiers} />}
@@ -72,5 +80,5 @@ export const Page: React.FC = ({ children }) => {
       </NavbarGroup>
     </Navbar>
     { children }
-  </>
+  </div>
 }
