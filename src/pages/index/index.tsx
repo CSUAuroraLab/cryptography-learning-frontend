@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   Alignment,
   Button,
@@ -11,7 +11,7 @@ import {
 } from '@blueprintjs/core'
 import { useTranslation } from 'react-i18next'
 import { Unselectable } from 'components/Unselectable'
-import { Select, ItemRenderer, IItemModifiers } from "@blueprintjs/select"
+import { Select, IItemModifiers } from "@blueprintjs/select"
 
 const I18nSelect = Select.ofType<string>()
 
