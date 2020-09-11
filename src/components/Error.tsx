@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, Fragment, useState } from 'react'
-import { Alert } from '@blueprintjs/core'
+import { Alert, Intent } from '@blueprintjs/core'
 import { useToggle } from 'hooks/common'
 import { isApolloError } from '@apollo/client'
 
@@ -66,9 +66,20 @@ export const ShowError: React.FC<{
   noBorder?: boolean
   error?: ErrorType
   errContext?: ErrorContext
-}> = ({ noBorder, error, errContext }) => {
+  onRefetch?: () => void
+}> = ({ noBorder, error, errContext, onRefetch }) => {
   const [ visible, setVisible, resetVisible ] = useToggle(false)
   const getDescription = useErrorToDescription()
+  
+  const onClose = useCallback((confirmed: boolean) => {
+    if (confirmed) {
+      // use confirm botton to close
+      // because of intent style
+      resetVisible()
+    } else if(onRefetch) {
+      onRefetch()
+    }
+  }, [resetVisible, onRefetch])
   useEffect(() => {
     if (error) {
       setVisible()
@@ -78,9 +89,13 @@ export const ShowError: React.FC<{
     { getDescription(error, errContext ?? {}) }
   </span>
 
-  return noBorder ? err : <Alert
-    isOpen={visible}
-    onClose={resetVisible}
+  return noBorder ? err : <Alert 
+    isOpen={visible} 
+    icon='ban-circle'
+    intent={Intent.DANGER}
+    onClose={onClose}
+    cancelButtonText='Retry'
+    confirmButtonText='Cancel'
   >
     { err }
   </Alert>
