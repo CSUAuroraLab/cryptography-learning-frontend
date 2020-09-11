@@ -1,0 +1,25 @@
+fragment Endpoint on Endpoint {
+  host
+  port
+}
+
+fragment Lab on Lab {
+  name
+  resource
+  endpoints {
+    ...Endpoint
+  }
+}
+
+fragment LabCategory on LabCategory {
+  name
+  labs {
+    ...Lab
+  }
+}
+
+fragment Practice on Practice {
+  labCategories {
+    ...LabCategory
+  }
+}

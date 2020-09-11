@@ -1,0 +1,9 @@
+query Hello {
+  hello
+}
+
+query Practices {
+  practice {
+    ...Practice
+  }
+}
