@@ -22,6 +22,7 @@
     "@types/react-router-dom": "^5.1.5",
     "graphql": "^15.3.0",
     "graphql.macro": "^1.4.2",
+    "http-proxy-middleware": "^1.0.5",
     "i18next": "^19.7.0",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.0.18",
