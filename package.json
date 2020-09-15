@@ -33,7 +33,9 @@
     "react-scripts": "3.4.3",
     "subscriptions-transport-ws": "^0.9.18",
     "typescript": "^3.7.5",
-    "xterm": "^4.9.0"
+    "xterm": "^4.9.0",
+    "xterm-addon-attach": "^0.6.0",
+    "xterm-addon-fit": "^0.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
