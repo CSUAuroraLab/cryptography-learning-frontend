@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { Terminal as Term } from 'xterm'
 import { FitAddon } from 'xterm-addon-fit'
 import { AttachAddon } from 'xterm-addon-attach'
@@ -55,7 +54,7 @@ export const Terminal: React.FC<TerminalProps> = ({ host, port }) => {
         })
       }
     }
-  }, [xterm, terminalRef, fitAddon])
+  }, [xterm, terminalRef, fitAddon, host, port])
   
   return <div ref={terminalRef}></div>
 }
