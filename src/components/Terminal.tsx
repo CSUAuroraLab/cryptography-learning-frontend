@@ -42,10 +42,10 @@ export const Terminal: React.FC<TerminalProps> = ({ host, port }) => {
       ws.onopen = () => {
         xterm.loadAddon(new AttachAddon(ws))
       }
-      ws.onerror = (e) =>  { throw e }
+      ws.onerror = (e) =>  { console.log(e) }
       ws.onclose = () => {
         const red = `\x1b[31m`
-        xterm.writeln('\n' + red + 'WEBSOCKET DISCONNECTED, PRESS ENTER TO EXIT')
+        xterm.writeln('\n' + red + 'WEBSOCKET DISCONNECTED, PRESS ESC TO EXIT')
         xterm.setOption('disableStdin', true)
         xterm.onKey(({key}) => {
           if (key.length === 1 && key.charCodeAt(0) === 27){
