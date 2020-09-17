@@ -20,7 +20,7 @@ export const Terminal: React.FC<TerminalProps> = ({ host, port }) => {
   const fitAddon = new FitAddon()
   xterm.loadAddon(fitAddon)
   useEffect(() => {
-    if(terminalRef.current) {
+    if(terminalRef.current && !terminalRef.current.children.length) {
       xterm.open(terminalRef.current)
       const ws = new WebSocket('ws://' + host + ':' + port)
       xterm.focus()
@@ -56,5 +56,5 @@ export const Terminal: React.FC<TerminalProps> = ({ host, port }) => {
     }
   }, [xterm, terminalRef, fitAddon, host, port])
   
-  return <div ref={terminalRef}></div>
+  return <div ref={terminalRef} id='terminal'></div>
 }
