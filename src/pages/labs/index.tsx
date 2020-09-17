@@ -7,6 +7,5 @@ export const Page: React.FC = () => {
   
   return <>
     <div>{t('labs')}</div>
-    <Terminal host='192.168.16.128' port={10020} />
   </>
 }
