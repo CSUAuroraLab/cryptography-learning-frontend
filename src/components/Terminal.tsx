@@ -9,7 +9,7 @@ type TerminalProps = {
 }
 
 export const Terminal: React.FC<TerminalProps> = ({ host, port }) => {
-  const terminalRef = React.createRef<HTMLDivElement>()
+  const terminalRef = React.useRef<HTMLDivElement>(null)
   const xterm = new Term({
     cursorBlink: true,
     scrollback: 1000,
