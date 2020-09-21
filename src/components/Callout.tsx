@@ -1,36 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import classNames from 'classnames'
 import { Classes, Intent, IconName, MaybeElement, Icon, H4 } from '@blueprintjs/core'
+import styled from '@emotion/styled'
+import { getIconName } from 'utils/getIconName'
+
+
+
+const TransitionDiv = styled.div`
+  transition: all 0.2s ease-in-out;
+  div {
+    transition: height 0.2s ease-in-out;
+  }
+`
+
+const Button = styled.button`
+  font-size: 100;
+  border: 0;
+  padding: 0;
+  background: unset;
+  cursor: pointer;
+  width: 100%;
+  text-align: unset;
+  outline: none;
+`
 
 type CalloutProps = {
     title?: string
     intent?: Intent
     icon?: IconName | MaybeElement
-}
-
-
-const getIconName = (icon?: IconName | MaybeElement, intent?: Intent): IconName | MaybeElement => {
-  // 1. no icon
-  if (icon === null) {
-    return undefined
-  }
-  // 2. defined iconName prop
-  if (icon !== undefined) {
-    return icon
-  }
-  // 3. default intent icon
-  switch (intent) {
-  case Intent.DANGER:
-    return "error"
-  case Intent.PRIMARY:
-    return "info-sign"
-  case Intent.WARNING:
-    return "warning-sign"
-  case Intent.SUCCESS:
-    return "tick"
-  default:
-    return undefined
-  }
 }
 
 export const Callout: React.FC<CalloutProps> = ({title, intent, icon, children}) => {
@@ -40,10 +37,11 @@ export const Callout: React.FC<CalloutProps> = ({title, intent, icon, children})
     Classes.intentClass(intent),
     { [Classes.CALLOUT_ICON]: iconName != null },
   )
+  const [ isOpen, setOpen ] = useState(false)
 
-  return <div className={classes}>
+  return <TransitionDiv className={classes}>
     {iconName && <Icon icon={iconName} iconSize={Icon.SIZE_LARGE} />}
-    {title && <H4>{title}</H4>}
-    {children}
-  </div>
+    {title && <Button onClick={() => setOpen(!isOpen)}><H4>{title}</H4></Button>}
+    {isOpen && children}
+  </TransitionDiv>
 }
