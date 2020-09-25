@@ -61,7 +61,14 @@ type MarkdownProps = {
   source: string
 }
 
+/** support block math/inline math/admonitions */
 export const Markdown: React.FC<MarkdownProps> = ({ source }) => {
+  /**
+   * use ::: (none|primary|success|warning|danger) [ICON:icon-name] title with any char
+   *     content between
+   *     :::
+   * for admonitions
+   */
   return <ReactMarkdown
     source={source}
     plugins={[
