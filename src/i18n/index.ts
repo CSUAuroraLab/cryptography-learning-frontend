@@ -16,7 +16,7 @@ i18n
       'en-US': {
         translations: {
           'home': 'Home',
-          'labs': 'Labs',
+          'practice': 'Practice',
           'learning': 'Learning',
           'site-name': 'CryptoLearn',
           'light': 'Light',
@@ -30,7 +30,7 @@ i18n
       'zh-CN': {
         translations: {
           'home': '主页',
-          'labs': '实验',
+          'practice': '实践',
           'learning': '学习',
           'site-name': '密码学学习',
           'light': '日间模式',

@@ -59,7 +59,7 @@ export const Page: React.FC = ({ children }) => {
         <NavbarDivider />
         <Unselectable>
           <Button className={Classes.MINIMAL} icon='home' text={t('home')} onClick={() => history.push('/')} />
-          <Button className={Classes.MINIMAL} icon='flag' text={t('labs')} onClick={() => history.push('/labs')} />
+          <Button className={Classes.MINIMAL} icon='flag' text={t('practice')} onClick={() => history.push('/practice')} />
           <Button className={Classes.MINIMAL} icon='search' text={t('learning')} onClick={() => history.push('/learning')} />
         </Unselectable>
       </NavbarGroup>

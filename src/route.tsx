@@ -10,7 +10,7 @@ export const Routes: React.FC = () => {
       <RoutePage path='/' page={import('pages/index')}> 
         <Switch>
           <RoutePage exact path='/' page={import('pages/home')} /> 
-          <RoutePage path='/labs' page={import('pages/labs')} /> 
+          <RoutePage path='/practice' page={import('pages/practice')} /> 
           <RoutePage path='/learning' page={import('pages/learning')} /> 
           
           <Redirect to='/' />

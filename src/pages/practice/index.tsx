@@ -5,6 +5,6 @@ export const Page: React.FC = () => {
   const { t } = useTranslation()
   
   return <>
-    <div>{t('labs')}</div>
+    <div>{t('labpractices')}</div>
   </>
 }
