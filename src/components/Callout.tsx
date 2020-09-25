@@ -4,8 +4,6 @@ import { Classes, Intent, IconName, MaybeElement, Icon, H4 } from '@blueprintjs/
 import styled from '@emotion/styled'
 import { getIconName } from 'utils/getIconName'
 
-
-
 const TransitionDiv = styled.div`
   transition: all 0.2s ease-in-out;
   div {
