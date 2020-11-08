@@ -68,6 +68,7 @@ export const Markdown: React.FC<MarkdownProps> = ({ source }) => {
    *     content between
    *     :::
    * for admonitions
+   * ICON name could be omit where intent will derive icon
    */
   return <ReactMarkdown
     source={source}
