@@ -21,6 +21,8 @@ i18n
           'site-name': 'CryptoLearn',
           'light': 'Light',
           'dark': 'Dark',
+          'welcome': 'Welcome to cryptography lab, there are resources/labs/etc for learning cryptography, hope you enjoy it!',
+          'welcome-title': 'WELCOME',
           i18n: {
             'en-US': 'English',
             'zh-CN': 'Chinese(Simplified)',
@@ -35,6 +37,8 @@ i18n
           'site-name': '密码学学习',
           'light': '日间模式',
           'dark': '夜间模式',
+          'welcome': '欢迎来到密码学实验室，这里准备了一些资源、实验、设计来帮助你学习密码学，希望你享受这里的一切！',
+          'welcome-title': '欢迎',
           i18n: {
             'en-US': '英文',
             'zh-CN': '简体中文'
