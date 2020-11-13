@@ -7,3 +7,9 @@ query Practices {
     ...Practice
   }
 }
+
+query Lab($categoryId: String!, $labId: String!, $language: String) {
+  lab(categoryId: $categoryId, labId: $labId, language: $language) {
+    ...LabInstance
+  }
+}

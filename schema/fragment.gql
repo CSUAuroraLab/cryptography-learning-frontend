@@ -3,18 +3,23 @@ fragment Endpoint on Endpoint {
   port
 }
 
-fragment Lab on Lab {
-  name
-  resource
+fragment LabWithoutEndpoint on Lab {
+  id
   endpoints {
     ...Endpoint
+  }
+  resources {
+    ...ResourceWithTranslation
   }
 }
 
 fragment LabCategory on LabCategory {
-  name
+  id
+  name {
+    ...Translation
+  }
   labs {
-    ...Lab
+    ...LabWithoutEndpoint
   }
 }
 
@@ -22,4 +27,23 @@ fragment Practice on Practice {
   labCategories {
     ...LabCategory
   }
+}
+
+fragment LabInstance on LabInstance {
+  lang
+  name
+  content
+  endpoints {
+    ...Endpoint
+  }
+}
+
+fragment ResourceWithTranslation on ResourceWithTranslation {
+  lang
+  name
+}
+
+fragment Translation on Translation {
+  lang
+  text
 }

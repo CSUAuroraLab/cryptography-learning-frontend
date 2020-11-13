@@ -1,8 +1,9 @@
 overwrite: true
 schema:
-  - "http://localhost:4000"
+  - "schema/schema.gql"
 documents:
-  - "schema/*.gql"
+  - "schema/query.gql"
+  - "schema/fragment.gql"
 generates:
   src/generated/graphql.tsx:
     plugins:
@@ -14,6 +15,8 @@ generates:
       withHOC: false
       withHooks: true
       gqlImport: graphql.macro#gql
+      apolloReactCommonImportFrom: "@apollo/client"
+      apolloReactHooksImportFrom: "@apollo/client"
   src/generated/fragmentTypes.json:
     plugins:
       - fragment-matcher
