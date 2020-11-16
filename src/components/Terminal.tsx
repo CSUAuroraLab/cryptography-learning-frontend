@@ -6,9 +6,10 @@ import { AttachAddon } from 'xterm-addon-attach'
 type TerminalProps = {
   host: string
   port: number
+  id?: string
 }
 
-export const Terminal: React.FC<TerminalProps> = ({ host, port }) => {
+export const Terminal: React.FC<TerminalProps> = ({ host, port, id }) => {
   const terminalRef = React.useRef<HTMLDivElement>(null)
   const xterm = new Term({
     cursorBlink: true,
@@ -56,5 +57,5 @@ export const Terminal: React.FC<TerminalProps> = ({ host, port }) => {
     }
   }, [xterm, terminalRef, fitAddon, host, port])
   
-  return <div ref={terminalRef} id='terminal'></div>
+  return <div ref={terminalRef} id={id ?? 'terminal'}></div>
 }
