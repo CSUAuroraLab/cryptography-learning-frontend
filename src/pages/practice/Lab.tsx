@@ -1,11 +1,13 @@
 import React from 'react'
 import { useApolloData } from 'hooks/common'
 import { useTranslation } from 'react-i18next'
-import { useLabQuery } from 'generated/graphql'
-import { Card } from '@blueprintjs/core'
+import { Endpoint, useLabQuery } from 'generated/graphql'
+import { Button, Card, H3 } from '@blueprintjs/core'
 import { useRouteMatch } from 'react-router-dom'
 import { Markdown } from 'components/Markdown'
 import styled from '@emotion/styled'
+import { Terminal } from 'components/Terminal'
+import { useState } from 'react'
 
 const ScrollCard = styled(Card)`
   overflow-y: auto;
@@ -46,10 +48,32 @@ export const Page: React.FC = () => {
       language: language
     }
   })
+  const [ terminals, setTermianls ] = useState<Endpoint[]>([])
 
-  return useApolloData(query, (data) => {
-    return <ScrollCard>
-      <Markdown source={data.lab.content}></Markdown>
-    </ScrollCard>
+  const content = useApolloData(query, (data) => {
+    const endpoints = data.lab.endpoints
+    return <>
+    <Markdown source={data.lab.content}></Markdown>
+      {
+        endpoints.map((endpoint, id) => {
+          const onClick = () => {
+            if(terminals.find(term => term === endpoint)) {
+              setTermianls(terminals.filter(term => term !== endpoint))
+            } else {
+              setTermianls(terminals.concat([endpoint]))
+            }
+          }
+          return <Button id={id.toString()} onClick={onClick}>{endpoint.host}</Button>
+        })
+      }
+      <Button onClick={() => setTermianls([])}>clear</Button>
+    </>
   })
+  return <ScrollCard>
+    { content }
+    { terminals.map((endpoint, idx) => <Card >
+      <H3>{endpoint.host}</H3>
+      <Terminal {...endpoint} id={'terminal'+idx} key={idx}/>
+    </Card>) } 
+  </ScrollCard>
 }

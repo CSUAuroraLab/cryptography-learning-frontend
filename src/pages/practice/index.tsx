@@ -26,13 +26,13 @@ export const useMenu = (language: string) => {
   const history = useHistory()
   return useApolloData(usePracticesQuery(), (data) => {
     let missingLang = false
-    const menuItems = data.practice.labCategories.map((category) => {
-      const categoryItems = category.labs.map((lab, index) => {
+    const menuItems = data.practice.labCategories.map((category, categoryIndex) => {
+      const categoryItems = category.labs.map((lab, labIndex) => {
         const nameAsSameLang = lab.resources.find(resouce => resouce.lang === language)
         if(!nameAsSameLang) missingLang = true
         const name = nameAsSameLang?.name ?? (lab.resources.length ? lab.resources[0].name : "secrete lab")
         return <Menu.Item
-          id={""+index}
+          key={categoryIndex+'.'+labIndex}
           onClick={() => history.push(labLink({category: category.id, lab: lab.id}))}
           text={name}
         />
@@ -41,7 +41,7 @@ export const useMenu = (language: string) => {
       if(!nameAsSameLang) missingLang = true
       const name = nameAsSameLang?.text ?? (category.name.length ? category.name[0].text : "secrete labs")
       return <>
-        <Menu.Divider title={name}/>
+        <Menu.Divider title={name} key={categoryIndex.toString()}/>
         {categoryItems}
       </>
     })
