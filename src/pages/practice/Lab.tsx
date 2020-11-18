@@ -11,7 +11,7 @@ import { useState } from 'react'
 
 const ScrollCard = styled(Card)`
   overflow-y: auto;
-  height: calc(100vh - 60px);
+  padding-top: 0;
 
   ::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0);

@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next'
 import { Unselectable } from 'components/Unselectable'
 import { Select, IItemModifiers } from "@blueprintjs/select"
 import { useHistory } from 'react-router-dom'
+import { Body, Footer, Header, Layout } from 'components/Layout'
 
 const I18nSelect = Select.ofType<string>()
 
@@ -50,37 +51,43 @@ export const Page: React.FC = ({ children }) => {
   const [ dark, setDark ] = useState(false)
   const history = useHistory()
 
-  return <div className={dark ? 'bp3-dark' : ''}>
-    <Navbar>
-      <NavbarGroup align={Alignment.LEFT}>
-        <Unselectable>
-          <NavbarHeading>{t('site-name')}</NavbarHeading>
-        </Unselectable>
-        <NavbarDivider />
-        <Unselectable>
-          <Button className={Classes.MINIMAL} icon='home' text={t('home')} onClick={() => history.push('/')} />
-          <Button className={Classes.MINIMAL} icon='flag' text={t('practice')} onClick={() => history.push('/practice')} />
-          <Button className={Classes.MINIMAL} icon='search' text={t('learning')} onClick={() => history.push('/learning')} />
-        </Unselectable>
-      </NavbarGroup>
-      <NavbarGroup align={Alignment.RIGHT}>
-        <NavbarDivider />
-        <Button 
-          text={dark ? t('light') : t('dark')} 
-          icon={dark ? 'flash' : 'moon'} 
-          onClick={() => {setDark(!dark)}}
-        />
-        <NavbarDivider />
-        <I18nSelect
-          items={items}
-          itemRenderer={(s, {handleClick, modifiers}) => <I18nRender s={s} handleClick={handleClick} modifiers={modifiers} />}
-          onItemSelect={(i) => {i18n.changeLanguage(i)}}
-          noResults={<MenuItem disabled={true} text="No results." />}
-        >
-          <Button text={t('i18n.'+i18n.language)} rightIcon="double-caret-vertical" />
-        </I18nSelect>
-      </NavbarGroup>
-    </Navbar>
-    { children }
-  </div>
+  return <Layout className={dark ? 'bp3-dark' : ''}>
+    <Header>
+      <Navbar>
+        <NavbarGroup align={Alignment.LEFT}>
+          <Unselectable>
+            <NavbarHeading>{t('site-name')}</NavbarHeading>
+          </Unselectable>
+          <NavbarDivider />
+          <Unselectable>
+            <Button className={Classes.MINIMAL} icon='home' text={t('home')} onClick={() => history.push('/')} />
+            <Button className={Classes.MINIMAL} icon='flag' text={t('practice')} onClick={() => history.push('/practice')} />
+            <Button className={Classes.MINIMAL} icon='search' text={t('learning')} onClick={() => history.push('/learning')} />
+          </Unselectable>
+        </NavbarGroup>
+        <NavbarGroup align={Alignment.RIGHT}>
+          <NavbarDivider />
+          <Button 
+            text={dark ? t('light') : t('dark')} 
+            icon={dark ? 'flash' : 'moon'} 
+            onClick={() => {setDark(!dark)}}
+          />
+          <NavbarDivider />
+          <I18nSelect
+            items={items}
+            itemRenderer={(s, {handleClick, modifiers}) => <I18nRender s={s} handleClick={handleClick} modifiers={modifiers} />}
+            onItemSelect={(i) => {i18n.changeLanguage(i)}}
+            noResults={<MenuItem disabled={true} text="No results." />}
+          >
+            <Button text={t('i18n.'+i18n.language)} rightIcon="double-caret-vertical" />
+          </I18nSelect>
+        </NavbarGroup>
+      </Navbar>
+    </Header>
+    <Body>
+      { children }
+    </Body>
+    <Footer>
+    </Footer>
+  </Layout>
 }
