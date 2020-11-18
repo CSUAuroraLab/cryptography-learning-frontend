@@ -8,6 +8,39 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New';
+  background-color: rgb(240, 240, 240);
+  border-radius: 3px;
+  padding: 3px;
+}
+
+pre::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+pre::-webkit-scrollbar {
+  height: 0.4rem;
+  width: 0.4rem;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+pre::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #999;
+}
+
+
+pre::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar {
+  height: 0.4rem;
+  width: 0.4rem;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background-color: #EEE;
 }
