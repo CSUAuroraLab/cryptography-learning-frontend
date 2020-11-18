@@ -13,12 +13,22 @@ import { navbarHeight, contentWidth } from 'components/common'
 
 const ScrollCard = styled(Div)`
   overflow-y: auto;
-  padding-top: 0;
   box-shadow: none;
   height: calc(100vh - ${navbarHeight}px);
+  padding: 0 10px;
   width: ${contentWidth}px;
 `
-export interface Match {
+
+const BlockWrapper = styled(Card)`
+  margin-top: 20px;
+`
+const EndpointContainer = styled(BlockWrapper)`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+`
+interface Match {
   category: string
   lab: string
 }
@@ -39,27 +49,29 @@ export const Page: React.FC = () => {
   const content = useApolloData(query, (data) => {
     const endpoints = data.lab.endpoints
     return <>
-    <Markdown source={data.lab.content}></Markdown>
-      {
-        endpoints.map((endpoint, id) => {
-          const onClick = () => {
-            if(terminals.find(term => term === endpoint)) {
-              setTermianls(terminals.filter(term => term !== endpoint))
-            } else {
-              setTermianls(terminals.concat([endpoint]))
+      <Markdown source={data.lab.content}></Markdown>
+      <EndpointContainer>
+        {
+          endpoints.map((endpoint, id) => {
+            const onClick = () => {
+              if(terminals.find(term => term === endpoint)) {
+                setTermianls(terminals.filter(term => term !== endpoint))
+              } else {
+                setTermianls(terminals.concat([endpoint]))
+              }
             }
-          }
-          return <Button id={id.toString()} onClick={onClick}>{endpoint.host}</Button>
-        })
-      }
-      <Button onClick={() => setTermianls([])}>clear</Button>
+            return <Button key={id} onClick={onClick}>{endpoint.host}</Button>
+          })
+        }
+        <Button onClick={() => setTermianls([])}>clear</Button>
+      </EndpointContainer>
     </>
   })
   return <ScrollCard>
     { content }
-    { terminals.map((endpoint, idx) => <Card >
+    { terminals.map((endpoint, idx) => <BlockWrapper key={idx}>
       <H3>{endpoint.host}</H3>
       <Terminal {...endpoint} id={'terminal'+idx} key={idx}/>
-    </Card>) } 
+    </BlockWrapper>) } 
   </ScrollCard>
 }

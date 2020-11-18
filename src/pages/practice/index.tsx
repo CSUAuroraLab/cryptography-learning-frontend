@@ -25,7 +25,7 @@ const ContentWrapper = styled(Div)`
 
 const MarginedMenu = styled(Div)`
   height: calc(100vh - ${navbarHeight}px);
-  border-right: 1px solid rgba(16, 22, 26, 0.15);
+  border-right: 1px solid  #999;
   ul {
     height: 100%;
     border-radius: 0;
@@ -57,7 +57,7 @@ export const useMenu = (language: string) => {
     })
     return <MarginedMenu style={{width: menuWidth}}>
       <Menu>
-      {menuItems}
+        {menuItems}
       </Menu>
     </MarginedMenu>
   })

@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import { getIconName } from 'utils/getIconName'
 
 const TransitionDiv = styled.div`
+  margin-top: 20px;
   transition: all 0.2s ease-in-out;
   div {
     transition: height 0.2s ease-in-out;
