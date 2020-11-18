@@ -18,9 +18,10 @@ const Container = styled.div`
 const ContentWrapper = styled(Div)`
   flex: 1 1 auto;
   display: flex;
-  align-items: center;
   padding: 0;
   justify-content: space-around;
+  overflow-y: auto;
+  height: calc(100vh - ${navbarHeight}px);
 `
 
 const MarginedMenu = styled(Div)`

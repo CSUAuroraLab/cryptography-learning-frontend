@@ -2,20 +2,18 @@ import React from 'react'
 import { useApolloData } from 'hooks/common'
 import { useTranslation } from 'react-i18next'
 import { Endpoint, useLabQuery } from 'generated/graphql'
-import { Button, Card, H3 } from '@blueprintjs/core'
+import { Button, Card, H3, Intent } from '@blueprintjs/core'
 import { useRouteMatch } from 'react-router-dom'
 import { Markdown } from 'components/Markdown'
 import styled from '@emotion/styled'
 import { Terminal } from 'components/Terminal'
 import { useState } from 'react'
 import { Div } from 'components/Div'
-import { navbarHeight, contentWidth } from 'components/common'
+import { contentWidth } from 'components/common'
 
 const ScrollCard = styled(Div)`
-  overflow-y: auto;
   box-shadow: none;
-  height: calc(100vh - ${navbarHeight}px);
-  padding: 0 10px;
+  padding: 0 10px 10px 10px;
   width: ${contentWidth}px;
 `
 
@@ -60,10 +58,10 @@ export const Page: React.FC = () => {
                 setTermianls(terminals.concat([endpoint]))
               }
             }
-            return <Button key={id} onClick={onClick}>{endpoint.host}</Button>
+            return <Button key={id} onClick={onClick}intent={Intent.PRIMARY} outlined={true}>{endpoint.host}</Button>
           })
         }
-        <Button onClick={() => setTermianls([])}>clear</Button>
+        <Button onClick={() => setTermianls([])} intent={Intent.DANGER} outlined={true}>clear</Button>
       </EndpointContainer>
     </>
   })
