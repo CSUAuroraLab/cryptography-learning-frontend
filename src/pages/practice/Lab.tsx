@@ -8,29 +8,15 @@ import { Markdown } from 'components/Markdown'
 import styled from '@emotion/styled'
 import { Terminal } from 'components/Terminal'
 import { useState } from 'react'
+import { Div } from 'components/Div'
+import { navbarHeight, contentWidth } from 'components/common'
 
-const ScrollCard = styled(Card)`
+const ScrollCard = styled(Div)`
   overflow-y: auto;
   padding-top: 0;
-
-  ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0);
-  }
-  
-  ::-webkit-scrollbar {
-    height: 0.4rem;
-    width: 0.4rem;
-    background-color: rgba(0, 0, 0, 0);
-  }
-  
-  .frac-line {
-    border-bottom-width: 1px !important;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    border-radius: 1rem;
-    background-color: #EEE;
-  }
+  box-shadow: none;
+  height: calc(100vh - ${navbarHeight}px);
+  width: ${contentWidth}px;
 `
 export interface Match {
   category: string

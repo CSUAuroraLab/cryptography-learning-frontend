@@ -14,6 +14,7 @@ import { Unselectable } from 'components/Unselectable'
 import { Select, IItemModifiers } from "@blueprintjs/select"
 import { useHistory } from 'react-router-dom'
 import { Body, Footer, Header, Layout } from 'components/Layout'
+import { navbarHeight } from 'components/common'
 
 const I18nSelect = Select.ofType<string>()
 
@@ -53,7 +54,7 @@ export const Page: React.FC = ({ children }) => {
 
   return <Layout className={dark ? 'bp3-dark' : ''}>
     <Header>
-      <Navbar>
+      <Navbar style={{height: navbarHeight}}>
         <NavbarGroup align={Alignment.LEFT}>
           <Unselectable>
             <NavbarHeading>{t('site-name')}</NavbarHeading>

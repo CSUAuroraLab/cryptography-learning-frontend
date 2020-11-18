@@ -8,18 +8,28 @@ import { labLink } from 'components/Link'
 import styled from '@emotion/styled'
 import { Pattern } from 'route'
 import { RoutePage } from 'components/LoadPage'
-
-const MenuWrapper = styled.div`
-  height: 100%;
-  width: 240px;
-`
+import { Div } from 'components/Div'
+import { menuWidth, navbarHeight } from 'components/common'
 
 const Container = styled.div`
   display: flex;
 `
 
-const MarginedMenu = styled(Menu)`
-  padding: 10px;
+const ContentWrapper = styled(Div)`
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  justify-content: space-around;
+`
+
+const MarginedMenu = styled(Div)`
+  height: calc(100vh - ${navbarHeight}px);
+  border-right: 1px solid rgba(16, 22, 26, 0.15);
+  ul {
+    height: 100%;
+    border-radius: 0;
+  }
 `
 
 export const useMenu = (language: string) => {
@@ -45,11 +55,11 @@ export const useMenu = (language: string) => {
         {categoryItems}
       </>
     })
-    return <MenuWrapper>
-      <MarginedMenu>
-        {menuItems}
-      </MarginedMenu>
-    </MenuWrapper>
+    return <MarginedMenu style={{width: menuWidth}}>
+      <Menu>
+      {menuItems}
+      </Menu>
+    </MarginedMenu>
   })
 }
 
@@ -69,10 +79,11 @@ export const Page: React.FC = () => {
   const menu = useMenu(language)
   return <Container>
     { menu }
-    <Switch>
-      <RoutePage exact path={Pattern.Lab} page={import('./Lab')} />
-      <Route path='/practice' component={Welcome} />
-    </Switch>
-    
+    <ContentWrapper>
+      <Switch>
+        <RoutePage exact path={Pattern.Lab} page={import('./Lab')} />
+        <Route path='/practice' component={Welcome} />
+      </Switch>
+    </ContentWrapper>
   </Container>
 }

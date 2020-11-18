@@ -12,6 +12,7 @@ code {
   background-color: rgb(240, 240, 240);
   border-radius: 3px;
   padding: 3px;
+  color: #000 !important;
 }
 
 pre::-webkit-scrollbar-track {
