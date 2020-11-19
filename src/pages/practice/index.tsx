@@ -15,6 +15,13 @@ const Container = styled.div`
   display: flex;
 `
 
+const WelcomeContainer = styled(Card)`
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: space-around;
+`
+
 const ContentWrapper = styled(Div)`
   flex: 1 1 auto;
   display: flex;
@@ -67,10 +74,12 @@ export const useMenu = (language: string) => {
 const Welcome: React.FC = () => {
   const { t } = useTranslation()
 
-  return <Card>
-    <H1>{t('welcome-title')}</H1>
-    { t('welcome') }
-  </Card>
+  return <WelcomeContainer>
+      <div>
+      <H1>{t('welcome-title')}</H1>
+        <p>{ t('welcome') }</p>
+      </div>
+    </WelcomeContainer>
 }
 
 export const Page: React.FC = () => {
