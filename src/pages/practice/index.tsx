@@ -2,7 +2,7 @@ import React from 'react'
 import { useApolloData } from 'hooks/common'
 import { useTranslation } from 'react-i18next'
 import { usePracticesQuery } from 'generated/graphql'
-import { Card, H1, Menu } from '@blueprintjs/core'
+import { Card, Divider, H1, Menu } from '@blueprintjs/core'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { labLink } from 'components/Link'
 import styled from '@emotion/styled'
@@ -33,7 +33,6 @@ const ContentWrapper = styled(Div)`
 
 const MarginedMenu = styled(Div)`
   height: calc(100vh - ${navbarHeight}px);
-  border-right: 1px solid  #999;
   ul {
     height: 100%;
     border-radius: 0;
@@ -88,6 +87,7 @@ export const Page: React.FC = () => {
   const  menu = useMenu(language)
   return <Container>
     { menu }
+    <Divider />
     <ContentWrapper>
       <Switch>
         <RoutePage exact path={Pattern.Lab} page={import('./Lab')} />
