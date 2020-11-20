@@ -1,0 +1,39 @@
+name: node.js
+
+on: [ push, pull_request ]
+
+env:
+  NODE_VERSION: '14.10.x'
+
+jobs:
+  Build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+    
+    - uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+    
+    - name: npm install
+      run: npm install
+    - name: npm build
+      run: GENERATE_SOURCEMAP=false npm run build
+    - name: upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: CryptoLearnWeb
+        path: |
+          build/*
+          docker/*
+    
