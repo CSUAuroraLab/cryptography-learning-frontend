@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useApolloData } from 'hooks/common'
 import { useTranslation } from 'react-i18next'
 import { usePracticesQuery } from 'generated/graphql'
@@ -81,7 +81,12 @@ const Welcome: React.FC = () => {
 }
 
 export const Page: React.FC = () => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
+  useEffect(() => {
+    const currentTitle = document.title
+    document.title = t('practice')
+    return () => {document.title = currentTitle}
+  },[t] )
 
   const language = i18n.language
   const  menu = useMenu(language)
