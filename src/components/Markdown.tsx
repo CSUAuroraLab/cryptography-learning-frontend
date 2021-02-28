@@ -7,6 +7,7 @@ import AdmonitionsPlugin from "remark-containers"
 import { Callout } from './Callout'
 import { IconName, Intent } from '@blueprintjs/core'
 import 'katex/dist/katex.min.css'
+import styled from '@emotion/styled/macro'
 
 const getIcon = (name: string) => {
   const names = [
@@ -51,7 +52,7 @@ type CodeBlockProps = {
   language?: string
 }
 
-export const CodeBlock: React.FC<CodeBlockProps> = ({ value, language }) => {
+const CodeBlock: React.FC<CodeBlockProps> = ({ value, language }) => {
   return <SyntaxHighlighter language={language}>
     {value}
   </SyntaxHighlighter>
@@ -59,6 +60,15 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ value, language }) => {
 
 type MarkdownProps = {
   source: string
+}
+
+const Pre = styled.div`
+  display: inline-block;
+  white-space: pre;
+`
+
+const InlineCode: React.FC = ({ children }) => {
+  return <Pre><code>{children}</code></Pre>
 }
 
 /** support block math/inline math/admonitions */
@@ -78,6 +88,7 @@ export const Markdown: React.FC<MarkdownProps> = ({ source }) => {
     ]}
     renderers={{
       code: CodeBlock,
+      inlineCode: InlineCode,
       math: ({ value }) => <BlockMath>{value}</BlockMath>,
       inlineMath: ({ value }) => <InlineMath>{value}</InlineMath>,
       none: (props) => <MarkdownCallout intent='none' {...props} />,
