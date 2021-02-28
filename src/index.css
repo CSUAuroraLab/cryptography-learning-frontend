@@ -9,10 +9,9 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New';
-  background-color: rgb(240, 240, 240);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
   padding: 3px;
-  color: #000 !important;
 }
 
 pre::-webkit-scrollbar-track {
@@ -27,7 +26,7 @@ pre::-webkit-scrollbar {
 
 pre::-webkit-scrollbar-thumb {
   border-radius: 1rem;
-  background-color: #999;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 
@@ -43,5 +42,5 @@ pre::-webkit-scrollbar-track {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 1rem;
-  background-color: #EEE;
+  background-color: rgba(125, 125, 125, 0.2);
 }

@@ -8,13 +8,29 @@ import { Markdown } from 'components/Markdown'
 import styled from '@emotion/styled'
 import { Terminal } from 'components/Terminal'
 import { useState } from 'react'
-import { Div } from 'components/Div'
 import { contentWidth } from 'components/common'
 
-const ScrollCard = styled(Div)`
-  box-shadow: none;
-  padding: 0 10px 10px 10px;
+const ScrollCard = styled(Card)`
+  overflow-y: auto;
+  padding: 10px;
+  height: 100%;
   width: ${contentWidth}px;
+`
+
+const Container = styled.div`
+  padding: 20px;
+  blockquote {
+    margin: 2em 0;
+    padding: 10px 20px;
+    position: relative;
+    background-color: rgba(255,255,255,0.05);
+    border-left: 3px solid rgba(255,255,255,0.3);
+    box-shadow: inset 0px 0px 2px 3px rgb(0 0 0 / 13%);
+    border: rgba(255,255,255,0.3);
+  }
+  img {
+    max-width: 100%;
+  }
 `
 
 const BlockWrapper = styled(Card)`
@@ -66,10 +82,12 @@ export const Page: React.FC = () => {
     </>
   })
   return <ScrollCard>
-    { content }
-    { terminals.map((endpoint, idx) => <BlockWrapper key={idx}>
-      <H3>{endpoint.host}</H3>
-      <Terminal {...endpoint} id={'terminal'+idx} key={idx}/>
-    </BlockWrapper>) } 
+    <Container>
+      { content }
+      { terminals.map((endpoint, idx) => <BlockWrapper key={idx}>
+        <H3>{endpoint.host}</H3>
+        <Terminal {...endpoint} id={'terminal'+idx} key={idx}/>
+      </BlockWrapper>) } 
+    </Container>
   </ScrollCard>
 }

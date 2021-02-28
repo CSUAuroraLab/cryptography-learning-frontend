@@ -9,7 +9,7 @@ import styled from '@emotion/styled'
 import { Pattern } from 'route'
 import { RoutePage } from 'components/LoadPage'
 import { Div } from 'components/Div'
-import { menuWidth, navbarHeight } from 'components/common'
+import { contentWidth, menuWidth, navbarHeight } from 'components/common'
 
 const Container = styled.div`
   display: flex;
@@ -20,6 +20,7 @@ const WelcomeContainer = styled(Card)`
   vertical-align: middle;
   align-items: center;
   justify-content: space-around;
+  width: ${contentWidth}px;
 `
 
 const ContentWrapper = styled(Div)`
@@ -37,6 +38,10 @@ const MarginedMenu = styled(Div)`
     height: 100%;
     border-radius: 0;
   }
+`
+
+const NoMarginDivider = styled(Divider)`
+  margin: 0px;
 `
 
 export const useMenu = (language: string) => {
@@ -92,7 +97,7 @@ export const Page: React.FC = () => {
   const  menu = useMenu(language)
   return <Container>
     { menu }
-    <Divider />
+    <NoMarginDivider />
     <ContentWrapper>
       <Switch>
         <RoutePage exact path={Pattern.Lab} page={import('./Lab')} />
