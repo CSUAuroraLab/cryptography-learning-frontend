@@ -73,11 +73,11 @@ const Welcome: React.FC = () => {
   const { t } = useTranslation()
 
   return <WelcomeContainer>
-      <div>
+    <div>
       <H1>{t('welcome-title')}</H1>
-        <p>{ t('welcome') }</p>
-      </div>
-    </WelcomeContainer>
+      <p>{ t('welcome') }</p>
+    </div>
+  </WelcomeContainer>
 }
 
 export const Page: React.FC = () => {
