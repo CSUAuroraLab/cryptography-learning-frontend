@@ -47,28 +47,22 @@ const MarkdownCallout: React.FC<MarkdownCalloutProps> = ({intent, data, children
   </Callout>
 }
 
-const CodeBlockWrapper = styled.div`
-  code {
-    background: none;
-  }
-`
-
 type CodeBlockProps = {
   value: string
   language?: string
 }
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ value, language }) => {
-  return <CodeBlockWrapper><SyntaxHighlighter language={language}>
+  return <><SyntaxHighlighter language={language}>
     {value}
-  </SyntaxHighlighter></CodeBlockWrapper>
+  </SyntaxHighlighter></>
 }
 
 type MarkdownProps = {
   source: string
 }
 
-const Pre = styled.div`
+const Pre = styled.pre`
   display: inline-block;
   white-space: pre;
 `
