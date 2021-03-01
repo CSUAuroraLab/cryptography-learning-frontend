@@ -47,15 +47,21 @@ const MarkdownCallout: React.FC<MarkdownCalloutProps> = ({intent, data, children
   </Callout>
 }
 
+const CodeBlockWrapper = styled.div`
+  code {
+    background: none;
+  }
+`
+
 type CodeBlockProps = {
   value: string
   language?: string
 }
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ value, language }) => {
-  return <SyntaxHighlighter language={language}>
+  return <CodeBlockWrapper><SyntaxHighlighter language={language}>
     {value}
-  </SyntaxHighlighter>
+  </SyntaxHighlighter></CodeBlockWrapper>
 }
 
 type MarkdownProps = {
