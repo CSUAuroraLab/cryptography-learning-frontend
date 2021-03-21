@@ -16,5 +16,5 @@ export const Body = styled.div`
 `
 
 export const Footer = styled.div`
-  flex: 1 1 auto;
+  flex: 0 1 auto;
 `

@@ -3,9 +3,11 @@ import logo from 'image/BigLogo.png'
 import { useTranslation } from 'react-i18next'
 import styled from '@emotion/styled/macro'
 import { Div } from 'components/Div'
-import { H1, H3 } from '@blueprintjs/core'
+import { H1, H3, H4, H5 } from '@blueprintjs/core'
 import { IconNames } from "@blueprintjs/icons"
 import { Feature } from 'components/Feature'
+import { Link } from 'react-router-dom'
+import { ExternalLink } from 'components/Link'
 
 const Img = styled.img`
   width: 100%;
@@ -22,6 +24,10 @@ const FeatureContainer = styled.div`
   margin-top: 50px;
   display: flex;
   justify-content: space-around;
+`
+
+const Gap = styled.div`
+  height: 10px;
 `
 
 export const Page: React.FC = () => {
@@ -41,5 +47,9 @@ export const Page: React.FC = () => {
       <Feature icon={IconNames.BRIEFCASE} description={t('feature-tools')} size={150}/>
       <Feature icon={IconNames.GRAPH} description={t('feature-visualize')} size={150}/>
     </FeatureContainer>
+    <Gap />
+    <H5>Copyright © 2020-2021 <ExternalLink link='https://csuwangj.github.io/'>CSUwangj</ExternalLink></H5>
+    <H5>Created using <ExternalLink link='https://reactjs.org/'>React.js</ExternalLink> & <ExternalLink link='https://blueprintjs.com/'>Blueprint.js</ExternalLink></H5>
+    <Gap />
   </Container>
 }
