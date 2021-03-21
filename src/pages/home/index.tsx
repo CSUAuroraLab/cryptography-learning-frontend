@@ -3,10 +3,9 @@ import logo from 'image/BigLogo.png'
 import { useTranslation } from 'react-i18next'
 import styled from '@emotion/styled/macro'
 import { Div } from 'components/Div'
-import { H1, H3, H4, H5 } from '@blueprintjs/core'
+import { H1, H3, H5 } from '@blueprintjs/core'
 import { IconNames } from "@blueprintjs/icons"
 import { Feature } from 'components/Feature'
-import { Link } from 'react-router-dom'
 import { ExternalLink } from 'components/Link'
 
 const Img = styled.img`

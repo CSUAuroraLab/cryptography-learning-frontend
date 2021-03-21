@@ -8,8 +8,6 @@ import {
   NavbarGroup,
   NavbarHeading,
   MenuItem,
-  H3,
-  H4,
 } from '@blueprintjs/core'
 import { useTranslation } from 'react-i18next'
 import { Unselectable } from 'components/Unselectable'
@@ -17,7 +15,6 @@ import { Select, IItemModifiers } from "@blueprintjs/select"
 import { useHistory } from 'react-router-dom'
 import { Body, Footer, Header, Layout } from 'components/Layout'
 import { navbarHeight } from 'components/common'
-import styled from '@emotion/styled/macro'
 
 const I18nSelect = Select.ofType<string>()
 
