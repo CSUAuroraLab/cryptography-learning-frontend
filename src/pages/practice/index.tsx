@@ -79,8 +79,8 @@ const Welcome: React.FC = () => {
 
   return <WelcomeContainer>
     <div>
-      <H1>{t('welcome-title')}</H1>
-      <p>{ t('welcome') }</p>
+      <H1>{t('lab-welcome-title')}</H1>
+      <p>{ t('lab-welcome') }</p>
     </div>
   </WelcomeContainer>
 }

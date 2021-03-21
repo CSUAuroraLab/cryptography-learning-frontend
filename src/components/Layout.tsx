@@ -12,6 +12,7 @@ export const Header = styled.div`
 
 export const Body = styled.div`
   flex: 1 1 auto;
+  overflow-y: auto;
 `
 
 export const Footer = styled.div`
