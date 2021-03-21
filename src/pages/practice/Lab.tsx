@@ -11,9 +11,7 @@ import { useState } from 'react'
 import { contentWidth } from 'components/common'
 
 const ScrollCard = styled(Card)`
-  overflow-y: auto;
   padding: 10px;
-  height: 100%;
   width: ${contentWidth}px;
 `
 
