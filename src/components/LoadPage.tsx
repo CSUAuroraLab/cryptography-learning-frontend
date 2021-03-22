@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { Suspense, useMemo } from 'react'
 import { Loading } from './Loading'
 import { Route, RouteProps } from 'react-router-dom'
 import { useError } from './Error'
@@ -7,27 +7,14 @@ type LoadPageProps = {
   page: Promise<{ Page: React.FC }>
 }
 
-export const LoadPage: React.FC<LoadPageProps> = ({ page, children }) => {
-  const [ Cur, setCur ] = useState<React.FC>(() => Loading)
-  const [ error, { setError } ] = useError()
-  const unmount = useRef<boolean>()
+const Empty: React.FC = () => <></>
 
-  useEffect(() => {
-    setCur(() => Loading)
-    unmount.current = false
-    return () => { unmount.current = true }
-  }, [page])
-  page.then(({ Page }) => {
-    if (unmount.current) return
-    setCur(() => Page)
-  }, e => {
-    if (unmount.current) return
-    setError(e)
-  })
+export const LoadPage: React.FC<{ lazy: React.LazyExoticComponent<React.FC>}> = ({ lazy, children }) => {
+  const Lazy = lazy
 
-  return error || <Cur>
-    { children }
-  </Cur>
+  return <Suspense fallback={<Loading />}>
+    <Lazy>{children}</Lazy>
+  </Suspense>
 }
 
 const getKey = (path: string | string[] | undefined) => {
@@ -38,6 +25,25 @@ const getKey = (path: string | string[] | undefined) => {
   }
 }
 
+const Cache = new Map<LoadPageProps['page'], React.LazyExoticComponent<React.FC<{}>>>()
+
 export const RoutePage: React.FC<RouteProps & LoadPageProps> = ({ page, children, ...rest}) => {
-  return <Route {...rest}><LoadPage key={getKey(rest.path)} page={page}>{children}</LoadPage></Route>
+  const [ error, { setError } ] = useError()
+  const defPage = useMemo(() => {
+    let lazy = Cache.get(page)
+    if(!lazy) {
+      lazy = React.lazy(() => page
+        .then(i => ({
+          default: i.Page
+        })).catch(e => {
+          setError(e)
+          return ({
+            default: Empty
+          })
+        })
+      )
+    }
+    return lazy
+  }, [ page, setError ])
+  return <Route {...rest}>{ error || <LoadPage key={getKey(rest.path)} lazy={defPage}>{children}</LoadPage>}</Route>
 }

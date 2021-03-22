@@ -16,6 +16,7 @@ export type ParamType = {
 
 export function generateLink<T extends keyof ParamType>(pattern: T, params?: ParamType[T]) {
   try {
+    console.log(pattern)
     return generatePath(pattern, params)
   } catch (e) {
     console.error(e)
