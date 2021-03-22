@@ -62,13 +62,13 @@ type MarkdownProps = {
   source: string
 }
 
-const Pre = styled.pre`
+const Code = styled.code`
   display: inline-block;
   white-space: pre;
 `
 
 const InlineCode: React.FC = ({ children }) => {
-  return <Pre><code>{children}</code></Pre>
+  return <Code>{children}</Code>
 }
 
 /** support block math/inline math/admonitions */
