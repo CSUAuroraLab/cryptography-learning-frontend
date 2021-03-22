@@ -29,7 +29,6 @@ const ContentWrapper = styled(Div)`
   padding: 0;
   justify-content: space-around;
   overflow-y: auto;
-  height: calc(100vh - ${navbarHeight}px);
 `
 
 const MarginedMenu = styled(Div)`
