@@ -84,7 +84,7 @@ export const Page: React.FC = () => {
       { content }
       { terminals.map((endpoint, idx) => <BlockWrapper key={idx}>
         <H3>{endpoint.host}</H3>
-        <Terminal {...endpoint} id={'terminal'+idx} key={idx}/>
+        <Terminal {...endpoint} id={'terminal' + endpoint.host + ':' + endpoint.port } key={idx}/>
       </BlockWrapper>) } 
     </Container>
   </ScrollCard>
