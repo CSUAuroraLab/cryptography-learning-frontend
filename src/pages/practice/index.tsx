@@ -9,7 +9,7 @@ import styled from '@emotion/styled'
 import { Pattern } from 'route'
 import { RoutePage } from 'components/LoadPage'
 import { Div } from 'components/Div'
-import { contentWidth, menuWidth, navbarHeight } from 'components/common'
+import { contentWidth, menuWidth } from 'components/common'
 
 const Container = styled.div`
   display: flex;

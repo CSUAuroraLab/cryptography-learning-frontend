@@ -14,6 +14,7 @@ html, body, #root {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New';
   background-color: rgba(240, 240, 240, 0.8);
+  color:rgb(68, 68, 68);
   border-radius: 3px;
   padding: 3px;
 }
