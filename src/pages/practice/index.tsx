@@ -9,9 +9,10 @@ import styled from '@emotion/styled'
 import { Pattern } from 'route'
 import { RoutePage } from 'components/LoadPage'
 import { Div } from 'components/Div'
-import { contentWidth, menuWidth } from 'components/common'
+import { contentWidth, menuWidth, navbarHeight } from 'components/common'
 
 const Container = styled.div`
+  min-height: calc(100vh - ${navbarHeight}px);
   display: flex;
 `
 
