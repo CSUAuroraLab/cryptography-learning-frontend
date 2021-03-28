@@ -32,7 +32,6 @@ const ContentWrapper = styled(Div)`
 `
 
 const MarginedMenu = styled(Div)`
-  height: calc(100vh - ${navbarHeight}px);
   ul {
     height: 100%;
     border-radius: 0;
