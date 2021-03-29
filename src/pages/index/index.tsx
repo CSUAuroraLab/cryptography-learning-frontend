@@ -58,11 +58,11 @@ export const Page: React.FC = ({ children }) => {
       <Navbar style={{height: navbarHeight}}>
         <NavbarGroup align={Alignment.LEFT}>
           <Unselectable>
-            <NavbarHeading>{t('site-name')}</NavbarHeading>
+            <NavbarHeading><Button className={Classes.MINIMAL} icon='home' text={t('home')} onClick={() => history.push('/')}/></NavbarHeading>
           </Unselectable>
           <NavbarDivider />
           <Unselectable>
-            <Button className={Classes.MINIMAL} icon='home' text={t('home')} onClick={() => history.push('/')} />
+            <Button className={Classes.MINIMAL} icon='flag' text={t('quickstart')} onClick={() => history.push('/quickstart')} />
             <Button className={Classes.MINIMAL} icon='flag' text={t('practice')} onClick={() => history.push('/practice')} />
             <Button className={Classes.MINIMAL} icon='search' text={t('learning')} onClick={() => history.push('/learning')} />
           </Unselectable>

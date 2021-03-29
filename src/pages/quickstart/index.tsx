@@ -37,14 +37,14 @@ export const Page: React.FC = () => {
     <H1>{t('home')}</H1>
     <H3>{t('introduction')}</H3>
     <FeatureContainer>
-      <Feature icon={IconNames.LEARNING} description={t('feature-teacher')} size={150}/>
-      <Feature icon={IconNames.FLAG} description={t('feature-flag')} size={150}/>
-      <Feature icon={IconNames.TRANSLATE} description={t('feature-translate')} size={150}/>
+      <Feature icon={IconNames.LEARNING} feature={t('teacher')} size={150}/>
+      <Feature icon={IconNames.FLAG} feature={t('flag')} size={150}/>
+      <Feature icon={IconNames.TRANSLATE} feature={t('translate')} size={150}/>
     </FeatureContainer>
     <FeatureContainer>
-      <Feature icon={IconNames.BOOK} description={t('feature-resource')} size={150}/>
-      <Feature icon={IconNames.BRIEFCASE} description={t('feature-tools')} size={150}/>
-      <Feature icon={IconNames.GRAPH} description={t('feature-visualize')} size={150}/>
+      <Feature icon={IconNames.BOOK} feature={t('resource')} size={150}/>
+      <Feature icon={IconNames.BRIEFCASE} feature={t('tools')} size={150}/>
+      <Feature icon={IconNames.GRAPH} feature={t('visualize')} size={150}/>
     </FeatureContainer>
     <Gap />
     <H5>Copyright © 2020-2021 <ExternalLink link='https://csuwangj.github.io/'>CSUwangj</ExternalLink></H5>

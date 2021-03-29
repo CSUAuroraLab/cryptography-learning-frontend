@@ -29,11 +29,11 @@ export const Routes: React.FC = () => {
     <Switch>
       <RoutePage path='/' page={import('pages/index')}> 
         <Switch>
-          <RoutePage exact path='/' page={import('pages/home')} /> 
+          <RoutePage exact path='/quickstart' page={import('pages/quickstart')} /> 
           <RoutePage exact path={Pattern.Lab} page={import('pages/practice')} />
           <RoutePage path='/practice' page={import('pages/practice')} /> 
           <RoutePage path='/learning' page={import('pages/learning')} /> 
-          <Redirect to='/' />
+          <Redirect to='/quickstart' />
         </Switch>
       </RoutePage>
     </Switch>
