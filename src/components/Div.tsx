@@ -1,5 +1,5 @@
 import { Card } from '@blueprintjs/core'
-import styled from '@emotion/styled'
+import styled from '@emotion/styled/macro'
 
 export const Div = styled(Card)`
   padding: unset;

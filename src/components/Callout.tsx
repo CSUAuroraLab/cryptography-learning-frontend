@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import classNames from 'classnames'
 import { Classes, Intent, IconName, MaybeElement, Icon, H4 } from '@blueprintjs/core'
-import styled from '@emotion/styled'
+import styled from '@emotion/styled/macro'
 import { getIconName } from 'utils/getIconName'
 
 const TransitionDiv = styled.div`
