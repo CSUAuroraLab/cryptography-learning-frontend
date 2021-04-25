@@ -3,7 +3,7 @@ import logo from 'image/BigLogo.png'
 import { useTranslation } from 'react-i18next'
 import styled from '@emotion/styled/macro'
 import { Div } from 'components/Div'
-import { H1, H3, H5, Button, Intent } from '@blueprintjs/core'
+import { H1, H3, H5, Button, Intent, Text } from '@blueprintjs/core'
 import { IconNames } from "@blueprintjs/icons"
 import { ExternalLink } from 'components/Link'
 import { useHistory } from 'react-router-dom'
@@ -22,7 +22,7 @@ const Gap = styled.div`
 `
 
 const BackContainer = styled.div`
-  margin-top: -5px;
+  padding-top: 5px;
   background-color: #47555e;
   h1, h3, h5 {
     color: #EEEEEE;
@@ -31,6 +31,11 @@ const BackContainer = styled.div`
     }
   }
   padding-bottom: 5px;
+`
+
+const IntroBelowImg = styled(BackContainer)`
+  margin-top: -5px;
+  padding-bottom: 10px;
 `
 
 const NavButton = styled(Button)`
@@ -59,13 +64,42 @@ const ButtonContainer = styled.div`
   align-items:center;
 `
 
+const FeaturesContainer = styled(Div)`
+  display: flex;
+  max-width: 1260px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
+`
+
+const FeatureContainer = styled(Div)`
+  flex: 1 1 0;
+  margin: 40px;
+  line-height: 25px;
+  text-align: justify;
+`
+
+const FeatureTitle = styled(H3)`
+  font-size: 24px;
+  font-weight: 300;
+  padding-bottom: 20px;
+`
+
+const FeatureText = styled(Text)`
+  font-size: 16px;
+  font-weight: 400;
+`
+
 export const Page: React.FC = () => {
   const { t } = useTranslation()
   const history = useHistory()
 
   return <Container>
     <Img src={logo} alt='Big Logo' />
-    <BackContainer>
+    <IntroBelowImg>
       <H1>{t('nav.home')}</H1>
       <H3>{t('introduction')}</H3>
       <Gap />
@@ -73,8 +107,26 @@ export const Page: React.FC = () => {
         <NavButton large intent={Intent.PRIMARY} onClick={() => history.push('/practice')} text={t('getstarted')} />
         <TakeButton large outlined={true} rightIcon={IconNames.ARROW_RIGHT} onClick={() => history.push('/tutorial')} text={t('taketutorial')} />
       </ButtonContainer>
-    </BackContainer>
-    
+    </IntroBelowImg>
+    <FeaturesContainer>
+      <FeatureContainer>
+        <FeatureTitle>{t('homepage.intro.ctf')}</FeatureTitle>
+        <FeatureText>{t('homepage.intro.ctf-detail')}</FeatureText>
+      </FeatureContainer>
+      <FeatureContainer>
+        <FeatureTitle>{t('homepage.intro.translate')}</FeatureTitle>
+        <FeatureText>{t('homepage.intro.translate-detail')}</FeatureText>
+      </FeatureContainer>
+      <FeatureContainer>
+        <FeatureTitle>{t('homepage.intro.resource')}</FeatureTitle>
+        <FeatureText>{t('homepage.intro.resource-detail')}</FeatureText>
+      </FeatureContainer>
+      <FeatureContainer>
+        <FeatureTitle>{t('homepage.intro.etc')}</FeatureTitle>
+        <FeatureText>{t('homepage.intro.etc-detail')}</FeatureText>
+        <FeatureText>{t('homepage.intro.etc-contact')}</FeatureText>
+      </FeatureContainer>
+    </FeaturesContainer>
     <BackContainer>
       <Gap />
       <H5>Copyright © 2020-2021 <ExternalLink link='https://csuwangj.github.io/'>CSUwangj</ExternalLink></H5>
