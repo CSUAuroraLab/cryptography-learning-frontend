@@ -36,6 +36,10 @@ i18n
             'tools': 'Cryptography toolbox prepared for novice (WIP)',
             'visualize': 'Visualize cryptographic algorithm(WIP)',
           },
+          'lab': {
+            'endpoint': 'Endpoint ',
+            'clear': 'Clear'
+          },
           'wip': 'Work In Progress',
           i18n: {
             'en-US': 'English',
@@ -67,6 +71,10 @@ i18n
             'visualize': '图解密码学算法（施工中）',
           },
           'wip': '施工中',
+          'lab': {
+            'endpoint': '服务器 ',
+            'clear': '关闭所有'
+          },
           i18n: {
             'en-US': '英文',
             'zh-CN': '简体中文'

@@ -46,7 +46,7 @@ interface Match {
 }
 
 export const Page: React.FC = () => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const language = i18n.language
   const { params: { category, lab } } = useRouteMatch<Match>()
   const query = useLabQuery({
@@ -72,10 +72,10 @@ export const Page: React.FC = () => {
                 setTermianls(terminals.concat([endpoint]))
               }
             }
-            return <Button key={id} onClick={onClick}intent={Intent.PRIMARY} outlined={true}>{endpoint.host}</Button>
+            return <Button key={id} onClick={onClick}intent={Intent.PRIMARY} outlined={true}>{t('lab.endpoint') + id.toString()}</Button>
           })
         }
-        <Button onClick={() => setTermianls([])} intent={Intent.DANGER} outlined={true}>clear</Button>
+        <Button onClick={() => setTermianls([])} intent={Intent.DANGER} outlined={true}>{t('lab.clear')}</Button>
       </EndpointContainer>
     </>
   })
