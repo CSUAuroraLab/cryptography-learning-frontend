@@ -15,15 +15,19 @@ i18n
     resources: {
       'en-US': {
         translations: {
-          'home': 'Cryptography Learning Platform',
-          'quickstart': 'quick start',
+          'nav': {
+            'home': 'Cryptography Learning Platform',
+            'tutorial': 'Tutorial',
+            'practice': 'Practice',
+            'learning': 'nav.learning'
+          },
           'introduction': 'Look, Study, Practice, all you need for cryptography is here(WIP :)',
-          'practice': 'Practice',
-          'learning': 'Learning',
           'light': 'Light',
           'dark': 'Dark',
           'lab-welcome': 'Welcome to cryptography lab, there are resources/labs/etc for learning cryptography, hope you enjoy it!',
           'lab-welcome-title': 'WELCOME',
+          'getstarted': 'Get Started',
+          'taketutorial': 'Take the Tutorial',
           'feature': {
             'teacher': 'Guided learning',
             'flag': 'Learning cryptography through Jeopardy-style CTF',
@@ -41,15 +45,19 @@ i18n
       },
       'zh-CN': {
         translations: {
-          'home': '密码学学习平台',
-          'quickstart': '快速开始',
+          'nav': {
+            'home': '密码学学习平台',
+            'tutorial': '教程',
+            'practice': '实践',
+            'learning': '学习',
+          },
           'introduction': '接触、学习、实践，为了密码学你需要的都在这（还未完成 ：）',
-          'practice': '实践',
-          'learning': '学习',
           'light': '日间模式',
           'dark': '夜间模式',
           'lab-welcome': '欢迎来到密码学实验室，这里准备了一些资源、实验、设计来帮助你练习密码学，希望你享受这里的一切！',
           'lab-welcome-title': '欢迎',
+          'getstarted': '开始实践',
+          'taketutorial': '查看教程',
           'feature': {
             'teacher': '引导性的学习体验',
             'flag': '通过解题夺旗学习密码学',

@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
   Alignment,
   Button,
-  Classes,
   Navbar,
   NavbarDivider,
   NavbarGroup,
@@ -15,6 +14,8 @@ import { Select, IItemModifiers } from "@blueprintjs/select"
 import { useHistory } from 'react-router-dom'
 import { Body, Footer, Header, Layout } from 'components/Layout'
 import { navbarHeight } from 'components/common'
+import styled from '@emotion/styled/macro'
+import { IconNames } from '@blueprintjs/icons'
 
 const I18nSelect = Select.ofType<string>()
 
@@ -42,6 +43,14 @@ const I18nRender: React.FC<I18nRenderProps> = ({ s, handleClick, modifiers }) =>
   )
 }
 
+const NavMenu = styled(Navbar)`
+  height: ${navbarHeight}px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EEE;
+  font-size: 20px;
+`
 
 export const Page: React.FC = ({ children }) => {
   const { t, i18n } = useTranslation()
@@ -55,21 +64,21 @@ export const Page: React.FC = ({ children }) => {
 
   return <Layout className={dark ? 'bp3-dark' : ''}>
     <Header>
-      <Navbar style={{height: navbarHeight}}>
+      <NavMenu>
         <NavbarGroup align={Alignment.LEFT}>
           <Unselectable>
-            <NavbarHeading><Button className={Classes.MINIMAL} icon='home' text={t('home')} onClick={() => history.push('/')}/></NavbarHeading>
+            <NavbarHeading><Button minimal large icon={IconNames.HOME} text={t('nav.home')} onClick={() => history.push('/')}/></NavbarHeading>
           </Unselectable>
           <NavbarDivider />
           <Unselectable>
-            <Button className={Classes.MINIMAL} icon='flag' text={t('quickstart')} onClick={() => history.push('/quickstart')} />
-            <Button className={Classes.MINIMAL} icon='flag' text={t('practice')} onClick={() => history.push('/practice')} />
-            <Button className={Classes.MINIMAL} icon='search' text={t('learning')} onClick={() => history.push('/learning')} />
+            <Button minimal large icon={IconNames.HELP} text={t('nav.tutorial')} onClick={() => history.push('/tutorial')} />
+            <Button minimal large icon={IconNames.FLAG} text={t('nav.practice')} onClick={() => history.push('/practice')} />
+            <Button minimal large icon={IconNames.SEARCH} text={t('nav.learning')} onClick={() => history.push('/learning')} />
           </Unselectable>
         </NavbarGroup>
         <NavbarGroup align={Alignment.RIGHT}>
           <NavbarDivider />
-          <Button 
+          <Button
             text={dark ? t('light') : t('dark')} 
             icon={dark ? 'flash' : 'moon'} 
             onClick={() => {setDark(!dark)}}
@@ -84,7 +93,7 @@ export const Page: React.FC = ({ children }) => {
             <Button text={t('i18n.'+i18n.language)} rightIcon="double-caret-vertical" />
           </I18nSelect>
         </NavbarGroup>
-      </Navbar>
+      </NavMenu>
     </Header>
     <Body>
       { children }

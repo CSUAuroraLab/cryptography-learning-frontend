@@ -17,7 +17,7 @@ export const Page: React.FC = () => {
   const { t } = useTranslation()
   useEffect(() => {
     const currentTitle = document.title
-    document.title = t('learning')
+    document.title = t('nav.learning')
     return () => {document.title = currentTitle}
   },[t] )
 

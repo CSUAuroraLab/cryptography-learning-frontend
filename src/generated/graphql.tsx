@@ -42,7 +42,7 @@ export type LabInstance = {
 };
 
 export type Practice = {
-  __typename?: 'Practice';
+  __typename?: 'nav.practice';
   labCategories: Array<LabCategory>;
 };
 
@@ -102,7 +102,7 @@ export type LabCategoryFragment = (
 );
 
 export type PracticeFragment = (
-  { __typename?: 'Practice' }
+  { __typename?: 'nav.practice' }
   & { labCategories: Array<(
     { __typename?: 'LabCategory' }
     & LabCategoryFragment
@@ -142,7 +142,7 @@ export type PracticesQueryVariables = Exact<{ [key: string]: never; }>;
 export type PracticesQuery = (
   { __typename?: 'Query' }
   & { practice: (
-    { __typename?: 'Practice' }
+    { __typename?: 'nav.practice' }
     & PracticeFragment
   ) }
 );
