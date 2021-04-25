@@ -64,7 +64,7 @@ export const Page: React.FC = ({ children }) => {
 
   return <Layout className={dark ? 'bp3-dark' : ''}>
     <Header>
-      <NavMenu>
+      <NavMenu className='bp3-dark'>
         <NavbarGroup align={Alignment.LEFT}>
           <Unselectable>
             <NavbarHeading><Button minimal large icon={IconNames.HOME} text={t('nav.home')} onClick={() => history.push('/')}/></NavbarHeading>
