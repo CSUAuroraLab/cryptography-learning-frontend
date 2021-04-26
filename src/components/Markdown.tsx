@@ -2,7 +2,7 @@ import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import SyntaxHighlighter from 'react-syntax-highlighter'
 import RemarkMathPlugin from 'remark-math'
-import { BlockMath, InlineMath } from 'react-katex'
+import TeX from '@matejmazur/react-katex'
 import AdmonitionsPlugin from "remark-containers"
 import { Callout } from './Callout'
 import { IconName, Intent } from '@blueprintjs/core'
@@ -89,8 +89,8 @@ export const Markdown: React.FC<MarkdownProps> = ({ source }) => {
     renderers={{
       code: CodeBlock,
       inlineCode: InlineCode,
-      math: ({ value }) => <BlockMath>{value}</BlockMath>,
-      inlineMath: ({ value }) => <InlineMath>{value}</InlineMath>,
+      math: ({ value }) => <TeX block>{value}</TeX>,
+      inlineMath: ({ value }) => <TeX>{value}</TeX>,
       none: (props) => <MarkdownCallout intent='none' {...props} />,
       primary: (props) => <MarkdownCallout intent='primary' {...props} />,
       success: (props) => <MarkdownCallout intent='success' {...props} />,
