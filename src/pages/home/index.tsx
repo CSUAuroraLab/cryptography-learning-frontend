@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import styled from '@emotion/styled/macro'
 import { Div } from 'components/Div'
 import { H1, H3, H5, Button, Intent, Text } from '@blueprintjs/core'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { IconNames } from "@blueprintjs/icons"
 import { ExternalLink } from 'components/Link'
 import { useHistory } from 'react-router-dom'
@@ -46,6 +47,7 @@ const NavButton = styled(Button)`
   flex: 0 1 auto;
 `
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const TakeButton = styled(NavButton)`
   span {
     color: #61dafb;
@@ -105,7 +107,7 @@ export const Page: React.FC = () => {
       <Gap />
       <ButtonContainer>
         <NavButton large intent={Intent.PRIMARY} onClick={() => history.push('/practice')} text={t('getstarted')} />
-        <TakeButton large outlined={true} rightIcon={IconNames.ARROW_RIGHT} onClick={() => history.push('/tutorial')} text={t('taketutorial')} />
+        {/* <TakeButton large outlined={true} rightIcon={IconNames.ARROW_RIGHT} onClick={() => history.push('/tutorial')} text={t('taketutorial')} /> */}
       </ButtonContainer>
     </IntroBelowImg>
     <FeaturesContainer>

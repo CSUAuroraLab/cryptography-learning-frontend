@@ -71,9 +71,9 @@ export const Page: React.FC = ({ children }) => {
           </Unselectable>
           <NavbarDivider />
           <Unselectable>
-            <Button minimal large icon={IconNames.HELP} text={t('nav.tutorial')} onClick={() => history.push('/tutorial')} />
+            {/* <Button minimal large icon={IconNames.HELP} text={t('nav.tutorial')} onClick={() => history.push('/tutorial')} /> */}
+            {/* <Button minimal large icon={IconNames.SEARCH} text={t('nav.learning')} onClick={() => history.push('/learning')} /> */}
             <Button minimal large icon={IconNames.FLAG} text={t('nav.practice')} onClick={() => history.push('/practice')} />
-            <Button minimal large icon={IconNames.SEARCH} text={t('nav.learning')} onClick={() => history.push('/learning')} />
           </Unselectable>
         </NavbarGroup>
         <NavbarGroup align={Alignment.RIGHT}>
