@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useApolloData } from 'hooks/common'
 import { useTranslation } from 'react-i18next'
 import { usePracticesQuery } from 'generated/graphql'
-import { Card, Divider, H1, Menu } from '@blueprintjs/core'
+import { Divider, H1, Menu } from '@blueprintjs/core'
 import { Route, Switch, useHistory } from 'react-router-dom'
 import { labLink } from 'components/Link'
 import styled from '@emotion/styled/macro'
@@ -16,7 +16,7 @@ const Container = styled.div`
   display: flex;
 `
 
-const WelcomeContainer = styled(Card)`
+const WelcomeContainer = styled(Div)`
   display: flex;
   vertical-align: middle;
   align-items: center;

@@ -9,8 +9,9 @@ import styled from '@emotion/styled/macro'
 import { Terminal } from 'components/Terminal'
 import { useState } from 'react'
 import { contentWidth } from 'components/common'
+import { Div } from 'components/Div'
 
-const ScrollCard = styled(Card)`
+const ScrollCard = styled(Div)`
   padding: 10px;
   width: ${contentWidth}px;
 `
