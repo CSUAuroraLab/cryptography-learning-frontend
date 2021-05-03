@@ -19,7 +19,7 @@ i18n
             'home': 'Cryptography Learning Platform',
             'tutorial': 'Tutorial',
             'practice': 'Practice',
-            'learning': 'nav.learning'
+            'learning': 'Learning'
           },
           'homepage': {
             'intro': {
