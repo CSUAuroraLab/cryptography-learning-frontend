@@ -1,13 +1,13 @@
-name: Build
+name: Publish
 
-on: [ push, pull_request ]
-
-env:
-  NODE_VERSION: '14.10.x'
+on:
+  release:
+    # Only use the types keyword to narrow down the activity types that will trigger your workflow.
+    types: [published, created, edited]
 
 jobs:
-  Build:
-    name: Build
+  Release:
+    name: Publish
     runs-on: ubuntu-latest
 
     steps:
@@ -24,16 +24,20 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    
     - name: npm install
       run: npm install
     - name: npm build
       run: GENERATE_SOURCEMAP=false npm run build
-    - name: upload artifact
-      uses: actions/upload-artifact@v2
+
+    - uses: montudor/action-zip@v1
       with:
-        name: CryptoLearnWeb.zip
-        path: |
-          build/*
-          docker/*
-    
+        args: zip -qq -r www.zip build
+
+    - name: Upload builds to release
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: www.zip
+        tag: ${{ github.ref }}
+        asset_name: www.zip
+        overwrite: true
