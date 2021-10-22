@@ -33,6 +33,7 @@ export const Routes: React.FC = () => {
           <RoutePage exact path={Pattern.Lab} page={import('pages/practice')} />
           <RoutePage path='/practice' page={import('pages/practice')} /> 
           <RoutePage path='/learning' page={import('pages/learning')} /> 
+          <RoutePage path='/feedback' page={import('pages/feedback')} />
           <RoutePage exact path='/' page={import('pages/home')} />
           <Redirect to='/' />
         </Switch>

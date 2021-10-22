@@ -61,6 +61,8 @@ export const Page: React.FC = ({ children }) => {
   // const items = Object.keys(i18n.services.resourceStore.data)
   const [ dark, setDark ] = useState(false)
   const history = useHistory()
+  const feedbackURL = process.env.REACT_APP_FEEDBACK_URL
+  const handleOpenFeedback = feedbackURL ? () => window.open(feedbackURL) : () => history.push('/feedback')
 
   return <Layout className={dark ? 'bp3-dark' : ''}>
     <Header>
@@ -74,6 +76,7 @@ export const Page: React.FC = ({ children }) => {
             {/* <Button minimal large icon={IconNames.HELP} text={t('nav.tutorial')} onClick={() => history.push('/tutorial')} /> */}
             {/* <Button minimal large icon={IconNames.SEARCH} text={t('nav.learning')} onClick={() => history.push('/learning')} /> */}
             <Button minimal large icon={IconNames.FLAG} text={t('nav.practice')} onClick={() => history.push('/practice')} />
+            <Button minimal large icon={IconNames.ENVELOPE} text={t('nav.feedback')} onClick={handleOpenFeedback} />
           </Unselectable>
         </NavbarGroup>
         <NavbarGroup align={Alignment.RIGHT}>

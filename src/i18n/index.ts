@@ -19,7 +19,8 @@ i18n
             'home': 'Cryptography Learning Platform',
             'tutorial': 'Tutorial',
             'practice': 'Practice',
-            'learning': 'Learning'
+            'learning': 'Learning',
+            'feedback': 'Feedback',
           },
           'homepage': {
             'intro': {
@@ -67,6 +68,7 @@ i18n
             'tutorial': '教程',
             'practice': '实践',
             'learning': '学习',
+            'feedback': '反馈',
           },
           'homepage': {
             'intro': {
