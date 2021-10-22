@@ -9,6 +9,8 @@ jobs:
   Release:
     name: Publish
     runs-on: ubuntu-latest
+    env:
+      FEEDBACK_URL: "https://github.com/CSUAuroraLab/ISSUE-COLLECTOR/issues/new/choose"
 
     steps:
     - uses: actions/checkout@v2
@@ -27,7 +29,7 @@ jobs:
     - name: npm install
       run: npm install
     - name: npm build
-      run: GENERATE_SOURCEMAP=false npm run build
+      run: REACT_APP_FEEDBACK_URL="$FEEDBACK_URL" GENERATE_SOURCEMAP=false npm run build
 
     - uses: montudor/action-zip@v1
       with:
