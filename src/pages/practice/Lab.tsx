@@ -63,30 +63,34 @@ export const Page: React.FC = () => {
     const endpoints = data.lab.endpoints
     return <>
       <Markdown source={data.lab.content}></Markdown>
-      <EndpointContainer>
-        {
-          endpoints.map((endpoint, id) => {
-            const onClick = () => {
-              if(terminals.find(term => term === endpoint)) {
-                setTermianls(terminals.filter(term => term !== endpoint))
-              } else {
-                setTermianls(terminals.concat([endpoint]))
+      {
+        !!endpoints.length && <EndpointContainer>
+          {
+            endpoints.map((endpoint, id) => {
+              const onClick = () => {
+                if(terminals.find(term => term === endpoint)) {
+                  setTermianls(terminals.filter(term => term !== endpoint))
+                } else {
+                  setTermianls(terminals.concat([endpoint]))
+                }
               }
-            }
-            return <Button key={id} onClick={onClick}intent={Intent.PRIMARY} outlined={true}>{t('lab.endpoint') + id.toString()}</Button>
-          })
-        }
-        <Button onClick={() => setTermianls([])} intent={Intent.DANGER} outlined={true}>{t('lab.clear')}</Button>
-      </EndpointContainer>
+              return <Button key={id} onClick={onClick}intent={Intent.PRIMARY} outlined={true}>{t('lab.endpoint') + id.toString()}</Button>
+            })
+          }
+          <Button onClick={() => setTermianls([])} intent={Intent.DANGER} outlined={true}>{t('lab.clear')}</Button>
+        </EndpointContainer>
+      }
     </>
   })
   return <ScrollCard>
     <Container>
       { content }
-      { terminals.map((endpoint, idx) => <BlockWrapper key={idx}>
-        <H3>{endpoint.host}</H3>
-        <Terminal {...endpoint} id={'terminal' + endpoint.host + ':' + endpoint.port } key={idx}/>
-      </BlockWrapper>) } 
+      { 
+        terminals.map((endpoint, idx) => <BlockWrapper key={idx}>
+          <H3>{endpoint.host}</H3>
+          <Terminal {...endpoint} id={'terminal' + endpoint.host + ':' + endpoint.port } key={idx}/>
+        </BlockWrapper>) 
+      } 
     </Container>
   </ScrollCard>
 }
