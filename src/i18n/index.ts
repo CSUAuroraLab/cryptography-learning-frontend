@@ -15,6 +15,7 @@ i18n
     resources: {
       'en-US': {
         translations: {
+          'quote': ': ',
           'nav': {
             'home': 'Cryptography Learning Platform',
             'tutorial': 'Tutorial',
@@ -51,7 +52,8 @@ i18n
             'etc-contact': 'You really can give a help hand at CSUwangj@protonmail.com.'
           },
           'lab': {
-            'endpoint': 'Endpoint ',
+            'ws_endpoint': 'Web Endpoint ',
+            'tcp_endpoint': 'Raw TCP Endpoint ',
             'clear': 'Clear'
           },
           'wip': 'Work In Progress',
@@ -63,6 +65,7 @@ i18n
       },
       'zh-CN': {
         translations: {
+          'quote': '：',
           'nav': {
             'home': '密码学学习平台',
             'tutorial': '教程',
@@ -100,7 +103,8 @@ i18n
           },
           'wip': '施工中',
           'lab': {
-            'endpoint': '服务器 ',
+            'ws_endpoint': '网页节点 ',
+            'tcp_endpoint': 'TCP节点 ',
             'clear': '关闭所有'
           },
           i18n: {

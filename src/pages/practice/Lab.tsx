@@ -2,7 +2,7 @@ import React from 'react'
 import { useApolloData } from 'hooks/common'
 import { useTranslation } from 'react-i18next'
 import { Endpoint, useLabQuery } from 'generated/graphql'
-import { Button, Card, H3, Intent } from '@blueprintjs/core'
+import { Button, Card, H3, H4, Intent } from '@blueprintjs/core'
 import { useRouteMatch } from 'react-router-dom'
 import { Markdown } from 'components/Markdown'
 import styled from '@emotion/styled/macro'
@@ -35,12 +35,24 @@ const Container = styled.div`
 const BlockWrapper = styled(Card)`
   margin-top: 20px;
 `
-const EndpointContainer = styled(BlockWrapper)`
+const WSEndpointContainer = styled(BlockWrapper)`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-around;
 `
+const TCPEndpointsContainer = styled(BlockWrapper)`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-around;
+`
+
+const TCPEndpointWrapper = styled(Div)`
+  display: flex;
+  align-items: center;
+`
+
 interface Match {
   category: string
   lab: string
@@ -60,13 +72,27 @@ export const Page: React.FC = () => {
   const [ terminals, setTermianls ] = useState<Endpoint[]>([])
 
   const content = useApolloData(query, (data) => {
-    const endpoints = data.lab.endpoints
+    const wsEndpoints = data.lab.wsEndpoints
+    const tcpEndpoints = data.lab.tcpEndpoints
     return <>
       <Markdown source={data.lab.content}></Markdown>
       {
-        !!endpoints.length && <EndpointContainer>
+        !!tcpEndpoints.length && <TCPEndpointsContainer>
           {
-            endpoints.map((endpoint, id) => {
+            tcpEndpoints.map((endpoint, id) => {
+              const source = `\`\`\` bash\nnc ${endpoint.host} ${endpoint.port}\n\`\`\``
+              return <TCPEndpointWrapper key={id}>
+                <H4>{t('lab.tcp_endpoint') + id.toString() + t('quote')}</H4>
+                <Markdown source={source} key={id}></Markdown>
+              </TCPEndpointWrapper>
+            })
+          }
+        </TCPEndpointsContainer>
+      }
+      {
+        !!wsEndpoints.length && <WSEndpointContainer>
+          {
+            wsEndpoints.map((endpoint, id) => {
               const onClick = () => {
                 if(terminals.find(term => term === endpoint)) {
                   setTermianls(terminals.filter(term => term !== endpoint))
@@ -74,11 +100,11 @@ export const Page: React.FC = () => {
                   setTermianls(terminals.concat([endpoint]))
                 }
               }
-              return <Button key={id} onClick={onClick}intent={Intent.PRIMARY} outlined={true}>{t('lab.endpoint') + id.toString()}</Button>
+              return <Button key={id} onClick={onClick}intent={Intent.PRIMARY} outlined={true}>{t('lab.ws_endpoint') + id.toString()}</Button>
             })
           }
           <Button onClick={() => setTermianls([])} intent={Intent.DANGER} outlined={true}>{t('lab.clear')}</Button>
-        </EndpointContainer>
+        </WSEndpointContainer>
       }
     </>
   })

@@ -3,6 +3,9 @@ import * as ApolloReactCommon from '@apollo/client';
 import * as ApolloReactHooks from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions =  {}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -22,7 +25,8 @@ export type Endpoint = {
 export type Lab = {
   __typename?: 'Lab';
   id: Scalars['String'];
-  endpoints: Array<Endpoint>;
+  wsEndpoints: Array<Endpoint>;
+  tcpEndpoints: Array<Endpoint>;
   resources: Array<ResourceWithTranslation>;
 };
 
@@ -38,11 +42,12 @@ export type LabInstance = {
   lang: Scalars['String'];
   name: Scalars['String'];
   content: Scalars['String'];
-  endpoints: Array<Endpoint>;
+  wsEndpoints: Array<Endpoint>;
+  tcpEndpoints: Array<Endpoint>;
 };
 
 export type Practice = {
-  __typename?: 'nav.practice';
+  __typename?: 'Practice';
   labCategories: Array<LabCategory>;
 };
 
@@ -77,10 +82,13 @@ export type EndpointFragment = (
   & Pick<Endpoint, 'host' | 'port'>
 );
 
-export type LabWithoutEndpointFragment = (
+export type LabWithEndpointFragment = (
   { __typename?: 'Lab' }
   & Pick<Lab, 'id'>
-  & { endpoints: Array<(
+  & { wsEndpoints: Array<(
+    { __typename?: 'Endpoint' }
+    & EndpointFragment
+  )>, tcpEndpoints: Array<(
     { __typename?: 'Endpoint' }
     & EndpointFragment
   )>, resources: Array<(
@@ -97,12 +105,12 @@ export type LabCategoryFragment = (
     & TranslationFragment
   )>, labs: Array<(
     { __typename?: 'Lab' }
-    & LabWithoutEndpointFragment
+    & LabWithEndpointFragment
   )> }
 );
 
 export type PracticeFragment = (
-  { __typename?: 'nav.practice' }
+  { __typename?: 'Practice' }
   & { labCategories: Array<(
     { __typename?: 'LabCategory' }
     & LabCategoryFragment
@@ -112,7 +120,10 @@ export type PracticeFragment = (
 export type LabInstanceFragment = (
   { __typename?: 'LabInstance' }
   & Pick<LabInstance, 'lang' | 'name' | 'content'>
-  & { endpoints: Array<(
+  & { wsEndpoints: Array<(
+    { __typename?: 'Endpoint' }
+    & EndpointFragment
+  )>, tcpEndpoints: Array<(
     { __typename?: 'Endpoint' }
     & EndpointFragment
   )> }
@@ -142,7 +153,7 @@ export type PracticesQueryVariables = Exact<{ [key: string]: never; }>;
 export type PracticesQuery = (
   { __typename?: 'Query' }
   & { practice: (
-    { __typename?: 'nav.practice' }
+    { __typename?: 'Practice' }
     & PracticeFragment
   ) }
 );
@@ -180,10 +191,13 @@ export const ResourceWithTranslationFragmentDoc = gql`
   name
 }
     `;
-export const LabWithoutEndpointFragmentDoc = gql`
-    fragment LabWithoutEndpoint on Lab {
+export const LabWithEndpointFragmentDoc = gql`
+    fragment LabWithEndpoint on Lab {
   id
-  endpoints {
+  wsEndpoints {
+    ...Endpoint
+  }
+  tcpEndpoints {
     ...Endpoint
   }
   resources {
@@ -199,11 +213,11 @@ export const LabCategoryFragmentDoc = gql`
     ...Translation
   }
   labs {
-    ...LabWithoutEndpoint
+    ...LabWithEndpoint
   }
 }
     ${TranslationFragmentDoc}
-${LabWithoutEndpointFragmentDoc}`;
+${LabWithEndpointFragmentDoc}`;
 export const PracticeFragmentDoc = gql`
     fragment Practice on Practice {
   labCategories {
@@ -216,7 +230,10 @@ export const LabInstanceFragmentDoc = gql`
   lang
   name
   content
-  endpoints {
+  wsEndpoints {
+    ...Endpoint
+  }
+  tcpEndpoints {
     ...Endpoint
   }
 }
@@ -243,10 +260,12 @@ export const HelloDocument = gql`
  * });
  */
 export function useHelloQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<HelloQuery, HelloQueryVariables>) {
-        return ApolloReactHooks.useQuery<HelloQuery, HelloQueryVariables>(HelloDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<HelloQuery, HelloQueryVariables>(HelloDocument, options);
       }
 export function useHelloLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<HelloQuery, HelloQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<HelloQuery, HelloQueryVariables>(HelloDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<HelloQuery, HelloQueryVariables>(HelloDocument, options);
         }
 export type HelloQueryHookResult = ReturnType<typeof useHelloQuery>;
 export type HelloLazyQueryHookResult = ReturnType<typeof useHelloLazyQuery>;
@@ -275,10 +294,12 @@ export const PracticesDocument = gql`
  * });
  */
 export function usePracticesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PracticesQuery, PracticesQueryVariables>) {
-        return ApolloReactHooks.useQuery<PracticesQuery, PracticesQueryVariables>(PracticesDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<PracticesQuery, PracticesQueryVariables>(PracticesDocument, options);
       }
 export function usePracticesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PracticesQuery, PracticesQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<PracticesQuery, PracticesQueryVariables>(PracticesDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<PracticesQuery, PracticesQueryVariables>(PracticesDocument, options);
         }
 export type PracticesQueryHookResult = ReturnType<typeof usePracticesQuery>;
 export type PracticesLazyQueryHookResult = ReturnType<typeof usePracticesLazyQuery>;
@@ -309,11 +330,13 @@ export const LabDocument = gql`
  *   },
  * });
  */
-export function useLabQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<LabQuery, LabQueryVariables>) {
-        return ApolloReactHooks.useQuery<LabQuery, LabQueryVariables>(LabDocument, baseOptions);
+export function useLabQuery(baseOptions: ApolloReactHooks.QueryHookOptions<LabQuery, LabQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<LabQuery, LabQueryVariables>(LabDocument, options);
       }
 export function useLabLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<LabQuery, LabQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<LabQuery, LabQueryVariables>(LabDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<LabQuery, LabQueryVariables>(LabDocument, options);
         }
 export type LabQueryHookResult = ReturnType<typeof useLabQuery>;
 export type LabLazyQueryHookResult = ReturnType<typeof useLabLazyQuery>;

@@ -3,9 +3,12 @@ fragment Endpoint on Endpoint {
   port
 }
 
-fragment LabWithoutEndpoint on Lab {
+fragment LabWithEndpoint on Lab {
   id
-  endpoints {
+  wsEndpoints {
+    ...Endpoint
+  }
+  tcpEndpoints {
     ...Endpoint
   }
   resources {
@@ -19,7 +22,7 @@ fragment LabCategory on LabCategory {
     ...Translation
   }
   labs {
-    ...LabWithoutEndpoint
+    ...LabWithEndpoint
   }
 }
 
@@ -33,7 +36,10 @@ fragment LabInstance on LabInstance {
   lang
   name
   content
-  endpoints {
+  wsEndpoints {
+    ...Endpoint
+  }
+  tcpEndpoints {
     ...Endpoint
   }
 }

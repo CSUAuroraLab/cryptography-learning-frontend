@@ -8,7 +8,8 @@ type Endpoint {
 
 type Lab {
   id: String!
-  endpoints: [Endpoint!]!
+  wsEndpoints: [Endpoint!]!
+  tcpEndpoints: [Endpoint!]!
   resources: [ResourceWithTranslation!]!
 }
 
@@ -22,7 +23,8 @@ type LabInstance {
   lang: String!
   name: String!
   content: String!
-  endpoints: [Endpoint!]!
+  wsEndpoints: [Endpoint!]!
+  tcpEndpoints: [Endpoint!]!
 }
 
 type Practice {
